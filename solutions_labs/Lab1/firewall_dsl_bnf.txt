@@ -1,0 +1,115 @@
+(* MiniWall BNF *)
+
+(* Syntax *)
+
+(* Program *)
+
+<program> ::= <statement_list>
+<statement_list> ::= <statement> <statement_list> | epsilon
+<statement> ::= <rule_stmt> | <assign_stmt> | <if_stmt> | <for_stmt> |
+                <input_stmt> | <print_stmt>
+
+(* Rule *)
+
+<rule_stmt> ::= "rule" <identifier> "=" <action> <protocol_spec>
+                "from" <addr_spec> "to" <addr_spec> <port_opt>
+<action> ::= "allow" | "deny"
+<protocol_spec> ::= "tcp" | "udp" | "icmp" | "any"
+<addr_spec> ::= <address> | <identifier> | "any"
+<port_opt> ::= "port" <port_value> <port_range_opt> | epsilon
+<port_value> ::= <number> | <identifier>
+<port_range_opt> ::= ".." <port_value> | epsilon
+
+(* Assignment *)
+
+<assign_stmt> ::= <identifier> "=" <expression>
+
+(* Conditional *)
+
+<if_stmt> ::= "if" <expression> "then" <statement_list> <else_part> "end"
+<else_part> ::= "else" <statement_list> | epsilon
+
+(* Loop *)
+
+<for_stmt> ::= "for" <identifier> "in" <expression> <range_opt> "do"
+               <statement_list> "end"
+<range_opt> ::= ".." <expression> | epsilon
+
+(* Input and output *)
+
+<input_stmt> ::= "input" <identifier>
+<print_stmt> ::= "print" <expression> <print_tail>
+<print_tail> ::= "," <expression> <print_tail> | epsilon
+
+(* Expressions *)
+
+<expression> ::= <or_expr>
+<or_expr> ::= <and_expr> <or_tail>
+<or_tail> ::= "or" <and_expr> <or_tail> | epsilon
+<and_expr> ::= <not_expr> <and_tail>
+<and_tail> ::= "and" <not_expr> <and_tail> | epsilon
+<not_expr> ::= "not" <not_expr> | <comparison>
+<comparison> ::= <arith_expr> <comparison_tail>
+<comparison_tail> ::= <comp_op> <arith_expr> | epsilon
+<comp_op> ::= "==" | "!=" | "<" | ">" | "<=" | ">=" | "within"
+<arith_expr> ::= <term> <arith_tail>
+<arith_tail> ::= <add_op> <term> <arith_tail> | epsilon
+<add_op> ::= "+" | "-"
+<term> ::= <factor> <term_tail>
+<term_tail> ::= <mul_op> <factor> <term_tail> | epsilon
+<mul_op> ::= "*" | "/" | "%"
+<factor> ::= <primary> <postfix_tail>
+<postfix_tail> ::= "." <field_name> <postfix_tail> |
+                   "[" <expression> "]" <postfix_tail> |
+                   epsilon
+<field_name> ::= "src" | "dst" | "proto" | "port"
+<primary> ::= <number> | <string> | <address> | <protocol_name> | <verdict> |
+              <identifier> <call_opt> | "(" <expression> ")" |
+              <list_literal> | <packet_literal>
+<call_opt> ::= "(" <argument_list> ")" | epsilon
+<argument_list> ::= <expression> <argument_tail> | epsilon
+<argument_tail> ::= "," <expression> <argument_tail> | epsilon
+<protocol_name> ::= "tcp" | "udp" | "icmp"
+<verdict> ::= "allow" | "deny"
+
+(* List and packet *)
+
+<list_literal> ::= "[" <element_list> "]"
+<element_list> ::= <expression> <element_tail> | epsilon
+<element_tail> ::= "," <expression> <element_tail> | epsilon
+<packet_literal> ::= "packet" "{" "src" ":" <expression> ","
+                     "dst" ":" <expression> ","
+                     "proto" ":" <expression> ","
+                     "port" ":" <expression> "}"
+
+(* Lexical *)
+
+<comment> ::= "#" <comment_text> <newline>
+<comment_text> ::= <comment_char> <comment_text> | epsilon
+<comment_char> ::= <string_character> | "'" | '"' | "{" | "}" | "[" | "]" |
+                   "=" | "<" | ">" | "+" | "*" | "%" | "@" | "#"
+<keyword> ::= "rule" | "allow" | "deny" | "tcp" | "udp" | "icmp" | "any" |
+              "from" | "to" | "port" | "packet" | "src" | "dst" | "proto" |
+              "if" | "then" | "else" | "for" | "in" | "do" | "end" |
+              "input" | "print" | "and" | "or" | "not" | "within"
+<identifier> ::= <letter> <identifier_tail>
+<identifier_tail> ::= <letter_or_digit_or_underscore> <identifier_tail> | epsilon
+<letter_or_digit_or_underscore> ::= <letter> | <digit> | "_"
+<number> ::= "0" | <nonzero_digit> <digits>
+<digits> ::= <digit> <digits> | epsilon
+<address> ::= <octet> "." <octet> "." <octet> "." <octet> <prefix_opt>
+<octet> ::= <digit> | <digit> <digit> | <digit> <digit> <digit>
+<prefix_opt> ::= "/" <prefix> | epsilon
+<prefix> ::= <digit> | <digit> <digit>
+<string> ::= '"' <string_characters> '"'
+<string_characters> ::= <string_character> <string_characters> | epsilon
+<string_character> ::= <letter> | <digit> | " " | "." | "," | ":" | ";" | "-" |
+                       "_" | "/" | "!" | "?" | "(" | ")"
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" |
+             "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" |
+             "w" | "x" | "y" | "z" |
+             "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" |
+             "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" |
+             "W" | "X" | "Y" | "Z"
+<digit> ::= "0" | <nonzero_digit>
+<nonzero_digit> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
