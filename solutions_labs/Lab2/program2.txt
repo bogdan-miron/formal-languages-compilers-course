@@ -1,0 +1,52 @@
+office = 10.0.0.0/24
+server = 192.168.1.10
+attacker = 203.0.113.9
+
+rule ssh_office  = allow tcp from office to server port 22
+rule block_ssh   = deny  tcp from any to any port 22
+rule web         = allow tcp from any to server port 80..443
+rule dns         = allow udp from office to any port 53
+rule ping_office = allow icmp from office to any
+rule block_all   = deny  any from any to any
+
+tests = [
+  packet { src: 10.0.0.7, dst: 192.168.1.10, proto: tcp, port: 22 },
+  packet { src: 198.51.100.2, dst: 192.168.1.10, proto: tcp, port: 22 },
+  packet { src: 198.51.100.2, dst: 192.168.1.10, proto: tcp, port: 443 },
+  packet { src: 10.0.0.7, dst: 8.8.8.8, proto: udp, port: 53 },
+  packet { src: 10.0.0.9, dst: 8.8.8.8, proto: icmp, port: 0 },
+  packet { src: 203.0.113.5, dst: 192.168.2.4, proto: tcp, port: 8080 }
+]
+
+passed = 0
+blocked = 0
+internal = 0
+for t in tests do
+  if t.src within office then
+    internal = internal + 1
+  end
+  if evaluate(t) == allow then
+    passed = passed + 1
+    print "allow", t.src, "to", t.dst, t.port, "by", matched_rule(t)
+  else
+    blocked = blocked + 1
+    print "deny", t.src, "to", t.dst, t.port, "by", matched_rule(t)
+  end
+end
+
+percent = blocked * 100 / len(tests)
+print "passed:", passed, "blocked:", blocked, "internal:", internal
+print "blocked percent:", percent
+if blocked * 2 > len(tests) or not (passed > 0) then
+  print "more than half of the tests were blocked"
+end
+
+open_ports = 0
+for n in 1..1024 do
+  probe = packet { src: attacker, dst: server, proto: tcp, port: n }
+  if evaluate(probe) == allow then
+    open_ports = open_ports + 1
+  end
+end
+print "ports open to the attacker:", open_ports
+print "first test decided by", matched_rule(tests[0])
