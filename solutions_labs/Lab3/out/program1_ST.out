@@ -1,0 +1,18 @@
+(1,0)  p
+(2,0)  web
+(3,0)  "denied, internal source"
+(5,0)  office
+(7,0)  web_http
+(8,0)  80
+(9,0)  192.168.1.10
+(9,1)  22
+(9,2)  "allowed by"
+(20,0)  443
+(24,0)  evaluate
+(28,0)  "denied by"
+(30,0)  block_rest
+(31,0)  "Type one packet in program syntax"
+(33,0)  ssh_office
+(35,0)  10.0.0.0/24
+(35,1)  matched_rule
+(36,0)  web_https

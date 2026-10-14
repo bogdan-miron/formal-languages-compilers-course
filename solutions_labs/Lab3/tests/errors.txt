@@ -1,0 +1,13 @@
+# lexical errors, one of each kind
+x = 007
+y = 12ab
+_tmp = 5
+print "unterminated
+print "bad\char"
+z = 10.0.0.5abc
+w = 1234.1.1.1
+v = 10.0.0.1/245
+# comment with a backslash \ inside
+t = a @ b
+q = 10.0.0.1/24
+print "ok"

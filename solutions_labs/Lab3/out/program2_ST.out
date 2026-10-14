@@ -1,0 +1,51 @@
+(0,0)  8080
+(2,0)  web
+(3,0)  server
+(3,1)  198.51.100.2
+(4,0)  "passed:"
+(5,0)  office
+(5,1)  t
+(6,0)  "by"
+(7,0)  ping_office
+(7,1)  block_all
+(7,2)  100
+(7,3)  "blocked percent:"
+(8,0)  80
+(9,0)  192.168.1.10
+(9,1)  22
+(10,0)  attacker
+(10,1)  "more than half of the tests were blocked"
+(10,2)  open_ports
+(11,0)  0
+(11,1)  "to"
+(11,2)  percent
+(12,0)  passed
+(12,1)  blocked
+(12,2)  1
+(13,0)  2
+(13,1)  probe
+(15,0)  "allow"
+(17,0)  block_ssh
+(20,0)  443
+(20,1)  8.8.8.8
+(21,0)  dns
+(24,0)  evaluate
+(24,1)  "first test decided by"
+(25,0)  10.0.0.7
+(25,1)  internal
+(25,2)  len
+(25,3)  "blocked:"
+(26,0)  tests
+(27,0)  10.0.0.9
+(27,1)  192.168.2.4
+(29,0)  53
+(29,1)  "ports open to the attacker:"
+(30,0)  203.0.113.5
+(33,0)  ssh_office
+(33,1)  "deny"
+(34,0)  203.0.113.9
+(34,1)  "internal:"
+(35,0)  10.0.0.0/24
+(35,1)  matched_rule
+(35,2)  1024
+(36,0)  n

@@ -1,0 +1,10 @@
+Lexical error, line 2: number with a leading zero 007
+Lexical error, line 3: invalid identifier 12ab (starts with a digit)
+Lexical error, line 4: invalid identifier _tmp (starts with an underscore)
+Lexical error, line 5: unterminated string "unterminated
+Lexical error, line 6: invalid character '\' in string "bad\char"
+Lexical error, line 7: invalid address 10.0.0.5abc
+Lexical error, line 8: invalid address 1234.1.1.1
+Lexical error, line 9: invalid address 10.0.0.1/245
+Lexical error, line 10: invalid character '\' in comment
+Lexical error, line 11: unexpected character '@'

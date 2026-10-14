@@ -1,0 +1,20 @@
+office = 10.0.0.0/24
+web = 192.168.1.10
+
+rule ssh_office = allow tcp from office to any port 22
+rule web_https  = allow tcp from any to web port 443
+rule web_http   = allow tcp from any to web port 80
+rule block_rest = deny any from any to any
+
+print "Type one packet in program syntax"
+input p
+
+if evaluate(p) == allow then
+  print "allowed by", matched_rule(p)
+else
+  if p.src within office then
+    print "denied, internal source", p.src
+  else
+    print "denied by", matched_rule(p)
+  end
+end
