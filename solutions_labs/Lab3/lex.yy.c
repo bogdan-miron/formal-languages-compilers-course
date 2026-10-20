@@ -852,7 +852,7 @@ case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
 #line 27 "miniwall.l"
-{ /* white space */ }
+{ /* skip spaces */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -1915,7 +1915,7 @@ void yyfree (void * ptr )
 #line 52 "miniwall.l"
 
 
-/* Adds a keyword, operator or separator to the PIF (no ST position). */
+/* keywords, operators and separators go only in the pif */
 static void emit_token(const char *text) {
     Entry *e = st_lookup(tokens, text, NULL);
     if (!e) {
@@ -1925,7 +1925,7 @@ static void emit_token(const char *text) {
     pif_add(&pif, text, e->value, NULL);
 }
 
-/* Adds an identifier or constant to the ST (if new) and to the PIF. */
+/* identifiers and constants go in the st (if new) and in the pif */
 static void emit_symbol(int code, const char *text) {
     StPos pos = st_insert(symbols, text, code, NULL);
     pif_add(&pif, text, code, &pos);
@@ -1942,7 +1942,7 @@ static void lex_error(const char *fmt, ...) {
     error_count++;
 }
 
-/* Printable form of a character for the error messages. */
+/* turns a character into text for the error message */
 static const char *show(unsigned char c) {
     static char buf[8];
     if (isprint(c)) snprintf(buf, sizeof buf, "'%c'", c);
@@ -1950,8 +1950,8 @@ static const char *show(unsigned char c) {
     return buf;
 }
 
-/* A dotted number was found. The scanner takes any digits, here we check the
-   shape of the <address> rule: octets of 1 to 3 digits, prefix of 1 or 2. */
+/* the scanner reads any digits here, so we check the octets and the prefix:
+   1 to 3 digits for an octet, 1 or 2 for the prefix */
 static void check_address(const char *text) {
     const char *p = text;
     int ok = 1;
@@ -1971,8 +1971,7 @@ static void check_address(const char *text) {
     else lex_error("invalid address %s", text);
 }
 
-/* Characters allowed in a comment: the ones allowed in a string, the double
-   quote and the tab. */
+/* characters allowed in a comment: same as in a string, plus " and tab */
 static int comment_char_ok(unsigned char c) {
     return isalnum(c) || strchr(" .,:;_/!?(){}[]=<>+*%@#&|$^~'-\"\t", c) != NULL;
 }
@@ -1986,8 +1985,7 @@ static void check_comment(const char *text) {
     }
 }
 
-/* The string has the right quotes but a character outside the allowed set:
-   say which one. */
+/* the quotes are fine but one character is not allowed, find which one */
 static void bad_string(const char *text) {
     for (const char *p = text + 1; p[1]; p++) {
         if (!(isalnum((unsigned char)*p) || strchr(" .,:;_/!?(){}[]=<>+*%@#&|$^~'-", *p))) {
