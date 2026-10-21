@@ -1,0 +1,14 @@
+ok    accept  
+ok    accept  b
+ok    accept  aa
+ok    accept  bb
+ok    accept  abab
+ok    accept  baab
+ok    accept  aaaa
+ok    reject  a
+ok    reject  ab
+ok    reject  aaa
+ok    reject  baba b
+ok    reject  c
+ok    reject  aca
+even_a: 13 words, 13 ok, 0 failed

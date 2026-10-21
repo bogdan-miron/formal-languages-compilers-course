@@ -1,0 +1,21 @@
+# words for identifier.fa, + must be accepted, - must be rejected
++ a
++ Z
++ x1
++ a_
++ my_var
++ ssh_office
++ A_B_9
++ a1b2c3
+# keywords look like identifiers here, the scanner tells them apart
++ rule
++ tests
+-
+- 1a
+- 9
+- _a
+- a-b
+- a b
+- a.b
+- $x
+- a"b

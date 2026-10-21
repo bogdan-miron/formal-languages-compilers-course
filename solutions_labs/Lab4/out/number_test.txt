@@ -1,0 +1,19 @@
+ok    accept  0
+ok    accept  7
+ok    accept  10
+ok    accept  22
+ok    accept  100
+ok    accept  1024
+ok    accept  65535
+ok    accept  900
+ok    reject  
+ok    reject  00
+ok    reject  01
+ok    reject  007
+ok    reject  -5
+ok    reject  1.5
+ok    reject  1a
+ok    reject  1 2
+ok    reject  0x10
+ok    reject  1_000
+number: 18 words, 18 ok, 0 failed

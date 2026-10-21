@@ -1,0 +1,15 @@
+# string: a double quote, letters, digits or symbols, and a closing double quote
+# the quote and the backslash are not in the symbol set, so they cannot be inside
+name string
+symbol quote "
+symbol letter A-Z a-z
+symbol digit 0-9
+symbol punct \s . , : ; \- _ / ! ? ( ) ' { } [ ] = < > + * % @ # & | $ ^ ~
+states Q0 Q1 Q2
+start Q0
+final Q2
+Q0 quote Q1
+Q1 letter Q1
+Q1 digit Q1
+Q1 punct Q1
+Q1 quote Q2

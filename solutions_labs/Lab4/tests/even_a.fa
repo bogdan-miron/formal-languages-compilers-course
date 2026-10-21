@@ -1,0 +1,12 @@
+# words over a and b with an even number of a's
+# the start state is final and has transitions coming back to it
+name even_a
+symbol a a
+symbol b b
+states E O
+start E
+final E
+E a O
+O a E
+E b E
+O b O

@@ -1,0 +1,12 @@
+# identifier: a letter, then letters, digits or underscores
+name identifier
+symbol letter A-Z a-z
+symbol digit 0-9
+symbol underscore _
+states Q0 Q1
+start Q0
+final Q1
+Q0 letter Q1
+Q1 letter Q1
+Q1 digit Q1
+Q1 underscore Q1

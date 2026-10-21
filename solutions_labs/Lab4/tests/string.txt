@@ -1,0 +1,20 @@
+# words for string.fa
++ ""
++ "a"
++ "allowed by"
++ "Type one packet in program syntax"
++ "denied, internal source"
++ "a # b"
++ "x=1; y<2"
++ "(a) [b] {c} 'd' 5"
++ "~^$|&@%*+>=-_/!?:;,."
+-
+- "
+- "abc
+- abc"
+- abc
+- "a"b"
+- ""x"
+- "a\b"
+- "a`b"
+- "a"b

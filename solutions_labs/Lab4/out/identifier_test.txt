@@ -1,0 +1,20 @@
+ok    accept  a
+ok    accept  Z
+ok    accept  x1
+ok    accept  a_
+ok    accept  my_var
+ok    accept  ssh_office
+ok    accept  A_B_9
+ok    accept  a1b2c3
+ok    accept  rule
+ok    accept  tests
+ok    reject  
+ok    reject  1a
+ok    reject  9
+ok    reject  _a
+ok    reject  a-b
+ok    reject  a b
+ok    reject  a.b
+ok    reject  $x
+ok    reject  a"b
+identifier: 19 words, 19 ok, 0 failed

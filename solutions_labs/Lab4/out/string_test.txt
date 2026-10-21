@@ -1,0 +1,20 @@
+ok    accept  ""
+ok    accept  "a"
+ok    accept  "allowed by"
+ok    accept  "Type one packet in program syntax"
+ok    accept  "denied, internal source"
+ok    accept  "a # b"
+ok    accept  "x=1; y<2"
+ok    accept  "(a) [b] {c} 'd' 5"
+ok    accept  "~^$|&@%*+>=-_/!?:;,."
+ok    reject  
+ok    reject  "
+ok    reject  "abc
+ok    reject  abc"
+ok    reject  abc
+ok    reject  "a"b"
+ok    reject  ""x"
+ok    reject  "a\b"
+ok    reject  "a`b"
+ok    reject  "a"b
+string: 19 words, 19 ok, 0 failed

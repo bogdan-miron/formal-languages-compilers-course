@@ -1,0 +1,12 @@
+digraph part2 {
+  rankdir=LR;
+  node [shape=circle];
+  came [shape=point];
+  came -> Q4 [style=dashed];
+  Q4 -> Q5 [label="digit"];
+  Q5 -> Q6 [label="digit"];
+  Q6 -> Q7 [label="digit"];
+  Q5 -> Q8 [label="."];
+  Q6 -> Q8 [label="."];
+  Q7 -> Q8 [label="."];
+}

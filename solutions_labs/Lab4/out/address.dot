@@ -1,0 +1,37 @@
+digraph address {
+  rankdir=LR;
+  node [shape=circle];
+  Q13 [shape=doublecircle];
+  Q14 [shape=doublecircle];
+  Q15 [shape=doublecircle];
+  Q17 [shape=doublecircle];
+  Q18 [shape=doublecircle];
+  start [shape=point];
+  start -> Q0;
+  Q0 -> Q1 [label="digit"];
+  Q1 -> Q2 [label="digit"];
+  Q2 -> Q3 [label="digit"];
+  Q1 -> Q4 [label="."];
+  Q2 -> Q4 [label="."];
+  Q3 -> Q4 [label="."];
+  Q4 -> Q5 [label="digit"];
+  Q5 -> Q6 [label="digit"];
+  Q6 -> Q7 [label="digit"];
+  Q5 -> Q8 [label="."];
+  Q6 -> Q8 [label="."];
+  Q7 -> Q8 [label="."];
+  Q8 -> Q9 [label="digit"];
+  Q9 -> Q10 [label="digit"];
+  Q10 -> Q11 [label="digit"];
+  Q9 -> Q12 [label="."];
+  Q10 -> Q12 [label="."];
+  Q11 -> Q12 [label="."];
+  Q12 -> Q13 [label="digit"];
+  Q13 -> Q14 [label="digit"];
+  Q14 -> Q15 [label="digit"];
+  Q13 -> Q16 [label="/"];
+  Q14 -> Q16 [label="/"];
+  Q15 -> Q16 [label="/"];
+  Q16 -> Q17 [label="digit"];
+  Q17 -> Q18 [label="digit"];
+}

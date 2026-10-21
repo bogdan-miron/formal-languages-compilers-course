@@ -1,0 +1,10 @@
+digraph string {
+  rankdir=LR;
+  node [shape=circle];
+  Q2 [shape=doublecircle];
+  start [shape=point];
+  start -> Q0;
+  Q0 -> Q1 [label="\""];
+  Q1 -> Q1 [label="letter, digit, punct"];
+  Q1 -> Q2 [label="\""];
+}

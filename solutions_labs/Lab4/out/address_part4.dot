@@ -1,0 +1,19 @@
+digraph part4 {
+  rankdir=LR;
+  node [shape=circle];
+  Q13 [shape=doublecircle];
+  Q14 [shape=doublecircle];
+  Q15 [shape=doublecircle];
+  Q17 [shape=doublecircle];
+  Q18 [shape=doublecircle];
+  came [shape=point];
+  came -> Q12 [style=dashed];
+  Q12 -> Q13 [label="digit"];
+  Q13 -> Q14 [label="digit"];
+  Q14 -> Q15 [label="digit"];
+  Q13 -> Q16 [label="/"];
+  Q14 -> Q16 [label="/"];
+  Q15 -> Q16 [label="/"];
+  Q16 -> Q17 [label="digit"];
+  Q17 -> Q18 [label="digit"];
+}

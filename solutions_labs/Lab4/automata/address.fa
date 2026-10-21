@@ -1,0 +1,39 @@
+# address: four octets of 1 to 3 digits separated by dots, then an optional / and 1 or 2 digits
+name address
+symbol digit 0-9
+symbol dot .
+symbol slash /
+states Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16 Q17 Q18
+start Q0
+final Q13 Q14 Q15 Q17 Q18
+# first octet
+Q0 digit Q1
+Q1 digit Q2
+Q2 digit Q3
+Q1 dot Q4
+Q2 dot Q4
+Q3 dot Q4
+# second octet
+Q4 digit Q5
+Q5 digit Q6
+Q6 digit Q7
+Q5 dot Q8
+Q6 dot Q8
+Q7 dot Q8
+# third octet
+Q8 digit Q9
+Q9 digit Q10
+Q10 digit Q11
+Q9 dot Q12
+Q10 dot Q12
+Q11 dot Q12
+# fourth octet
+Q12 digit Q13
+Q13 digit Q14
+Q14 digit Q15
+# prefix
+Q13 slash Q16
+Q14 slash Q16
+Q15 slash Q16
+Q16 digit Q17
+Q17 digit Q18

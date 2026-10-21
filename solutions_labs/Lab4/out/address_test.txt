@@ -1,0 +1,26 @@
+ok    accept  10.0.0.5
+ok    accept  192.168.1.10
+ok    accept  203.0.113.9
+ok    accept  1.2.3.4
+ok    accept  10.0.0.0/24
+ok    accept  0.0.0.0/0
+ok    accept  255.255.255.255/32
+ok    accept  8.8.8.8/8
+ok    accept  256.1.1.1
+ok    accept  10.0.0.1/99
+ok    accept  999.999.999.999/99
+ok    reject  
+ok    reject  1234.1.1.1
+ok    reject  1.2.3
+ok    reject  1.2.3.4.5
+ok    reject  1.2.3.4/
+ok    reject  1.2.3.4/123
+ok    reject  .1.2.3
+ok    reject  1..2.3
+ok    reject  1.2.3.4.
+ok    reject  10.0.0.5abc
+ok    reject  a.b.c.d
+ok    reject  10.0.0.1/ 24
+ok    reject  10.0.0.1//24
+ok    reject  10 .0.0.1
+address: 25 words, 25 ok, 0 failed

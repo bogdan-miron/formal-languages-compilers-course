@@ -1,0 +1,11 @@
+# number: 0 alone, or a digit from 1 to 9 followed by any digits
+name number
+symbol zero 0
+symbol nonzero 1-9
+states Q0 Q1 Q2
+start Q0
+final Q1 Q2
+Q0 zero Q1
+Q0 nonzero Q2
+Q2 zero Q2
+Q2 nonzero Q2

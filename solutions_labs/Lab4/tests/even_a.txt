@@ -1,0 +1,14 @@
+# words for even_a.fa, an even number of a's
++
++ b
++ aa
++ bb
++ abab
++ baab
++ aaaa
+- a
+- ab
+- aaa
+- baba b
+- c
+- aca

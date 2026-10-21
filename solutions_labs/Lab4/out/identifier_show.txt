@@ -1,0 +1,12 @@
+automaton: identifier
+states:    Q0 Q1
+start:     Q0
+final:     Q1
+alphabet:
+  letter = A-Z a-z
+  digit = 0-9
+  underscore = _
+transitions (-> start, * final, - no transition):
+       letter      digit       underscore  
+-> Q0  Q1          -           -           
+*  Q1  Q1          Q1          Q1          

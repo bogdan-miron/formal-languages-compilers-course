@@ -1,0 +1,29 @@
+automaton: address
+states:    Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 Q8 Q9 Q10 Q11 Q12 Q13 Q14 Q15 Q16 Q17 Q18
+start:     Q0
+final:     Q13 Q14 Q15 Q17 Q18
+alphabet:
+  digit = 0-9
+  dot = .
+  slash = /
+transitions (-> start, * final, - no transition):
+        digit  dot    slash  
+-> Q0   Q1     -      -      
+   Q1   Q2     Q4     -      
+   Q2   Q3     Q4     -      
+   Q3   -      Q4     -      
+   Q4   Q5     -      -      
+   Q5   Q6     Q8     -      
+   Q6   Q7     Q8     -      
+   Q7   -      Q8     -      
+   Q8   Q9     -      -      
+   Q9   Q10    Q12    -      
+   Q10  Q11    Q12    -      
+   Q11  -      Q12    -      
+   Q12  Q13    -      -      
+*  Q13  Q14    -      Q16    
+*  Q14  Q15    -      Q16    
+*  Q15  -      -      Q16    
+   Q16  Q17    -      -      
+*  Q17  Q18    -      -      
+*  Q18  -      -      -      
